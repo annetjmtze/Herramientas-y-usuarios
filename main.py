@@ -125,7 +125,7 @@ async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
 # --- CONFIGURACIÓN PRINCIPAL ---
 def main():
     """Inicia el bot y lo configura con Webhooks."""
-    TOKEN = os.getenv("TELEGRAM_TOKEN")
+    TOKEN = os.getenv("TELEGRAM_TOKEN_MAL_ESCRITO")
     # La URL base del webhook la provee Railway. Le añadimos el path "/webhook".
     WEBHOOK_URL = f"{os.getenv('WEBHOOK_URL')}/webhook"
     # Railway nos da un puerto dinámico a través de la variable de entorno PORT.
