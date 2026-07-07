@@ -43,34 +43,33 @@ Antes de comenzar es necesario tener instalado:
 - Python 3.10 o superior
 - pip
 - Git
-- Tesseract OCR
 - Ngrok
-
-Opcional:
-
-- Railway CLI
 
 ---
 # 🔄 Funcionamiento
-El bot utiliza un webhook para recibir los mensajes enviados a través del Sandbox de Twilio para WhatsApp.
 
-1. Un usuario envía un mensaje de texto o una imagen al número de WhatsApp del Sandbox de Twilio.
-2. Twilio reenvía el mensaje a una URL pública (generada por **ngrok**) que apunta a nuestro servidor local.
-3. La aplicación **Flask** en `main.py` recibe la petición en el endpoint `/webhook`.
-4. Si el mensaje es una imagen, se utiliza **Tesseract OCR** para extraer el texto.
-5. El texto (ya sea del mensaje original o extraído de la imagen) se envía a la API de **Anthropic** para su análisis.
-6. La respuesta generada por la IA se formatea y se envía de vuelta al usuario a través de Twilio.
+### WhatsApp (vía Webhook)
+1. Un usuario envía un mensaje al número de WhatsApp del Sandbox de Twilio.
+2. Twilio reenvía el mensaje a una URL pública (generada por **ngrok**) que apunta a nuestro servidor Flask local.
+3. La aplicación **Flask** en `whatsapp_handler.py` recibe la petición en el endpoint `/webhook`.
+4. El texto se envía al `MedicamentoNormalizer` que consulta la API de **Anthropic**.
+5. La respuesta generada por la IA se formatea y se envía de vuelta al usuario a través de Twilio.
+
+### Telegram (vía Polling)
+1. El bot se conecta a los servidores de Telegram y pregunta periódicamente si hay nuevos mensajes.
+2. Cuando un usuario envía un comando como `/medicamento`, el `telegram_handler.py` lo procesa.
+3. El texto se envía al `MedicamentoNormalizer` que consulta la API de **Anthropic**.
+4. La respuesta se formatea y se envía de vuelta al chat de Telegram.
 
 ---
 # 💻 Ejecutar el proyecto localmente
 
 ## 1. Clonar el repositorio
 
-> **Nota:** Este proyecto debe estar en un repositorio privado llamado `dr-ahorro-bot`.
-
 ```bash
 # Reemplaza la URL con la de tu nuevo repositorio privado
 git clone https://github.com/tu-usuario/dr-ahorro-bot.git
+cd dr-ahorro-bot
 ```
 
 Entrar al proyecto
