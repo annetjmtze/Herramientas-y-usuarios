@@ -258,7 +258,7 @@ python main.py --channel all
 | ModuleNotFoundError | Ejecuta `pip install -r requirements.txt` |
 | ERROR 404 en getMe | Verifica el token del bot de Telegram |
 | Webhook no registrado | Configura manualmente la URL en Twilio |
-| Error de modelo Claude | Actualiza el modelo en `normalizer.py` |
+| `Error de modelo: claude-3-haiku-20240307` (o similar) | Asegúrate de usar un modelo válido en `llm/normalizer.py` (ej. `claude-3-5-sonnet-20241022` o `claude-3-sonnet-20240229`). |
 | WhatsApp no responde | Revisa ngrok, el puerto y la URL configurada |
 
 ---
